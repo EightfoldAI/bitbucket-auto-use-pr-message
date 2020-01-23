@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+
+  "name": "Bitbucket auto use PR message",
+  "description": "This extension automatically sets your final commit's merge message to your PR message in Bitbucket.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "pull-request.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+      {
+          "matches": ["https://bitbucket.org/*"],
+          "js": ["mutateDOM.js"],
+          "run_at": "document_end"
+      },
+      {
+          "matches": ["https://bitbucket.org/*"],
+          "js": ["popup.js"],
+          "run_at": "document_start"
+      }
+  ]
+}
